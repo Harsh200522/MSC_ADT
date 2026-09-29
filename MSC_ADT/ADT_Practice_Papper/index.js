@@ -73,10 +73,21 @@ async function run() {
         // console.log(findMark);
 
         // Change S02 marks to 65. Display the updated student. 
-        const updateStu= await Student.updateOne({studentId:"S02"},{$set:{marks:65}});
-        console.log("Updated Student:");
-        const updatedStudent= await Student.find({studentId:"S02"});
-        console.log(updatedStudent);
+        // const updateStu= await Student.updateOne({studentId:"S02"},{$set:{marks:65}});
+        // console.log("Updated Student:",updateStu);
+        // const updatedStudent= await Student.find({studentId:"S02"});
+        // console.log(updatedStudent);
+
+
+        //Set isActive to false for every BCA student. Display the affected students. 
+        //  const updateIsActive=await Student.updateMany({course:"BCA"},{$set:{isActive:false}}) ;
+        //  console.log("Affected Students:",updateIsActive);
+
+        // Delete S05 using studentId and verify that the record no longer exists.
+        const deleteStu= await Student.deleteOne({studentId:"S05"});
+        console.log("Deleted Student:",deleteStu);
+        const verifyDelete= await Student.find({studentId:"S05"});
+        console.log("Verify Deleted Student:",verifyDelete);  
     } catch (error) {
         if (error.name === "ValidationError") {
             console.log("Validation error:", error.message);
